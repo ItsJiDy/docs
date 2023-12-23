@@ -51,17 +51,18 @@ const urlParams = new URLSearchParams(queryString);
 const hwid = urlParams.get('hwid');
 const validate = urlParams.get('validate');
 if (hwid == '') {
-alert('The link you got might be invalid, Please try again.');
+    alert('The link you got might be invalid, Please try again.');
 } else {
-if (validate == '') {
-alert('The link you got might be invalid, Please try again.');
-} else {
-        sessionStorage.setItem('hwid', hwid);
-
-setTimeout(function() {
-  window.location.href = "https://link-hub.net/978899/symphony-hub-key-system/dynamic?r=" + validate + "&o=sharing"
-}, 5000);
-}
+    if (validate == '') {
+        alert('The link you got might be invalid, Please try again.');
+    } else {
+         alert(hwid + " " + validate);
+            sessionStorage.setItem('hwid', hwid);
+    
+        setTimeout(function() {
+          window.location.href = "https://link-hub.net/978899/symphony-hub-key-system/dynamic?r=" + validate + "&o=sharing"
+        }, 5000);
+    }
 }
 </script>
 </body>
