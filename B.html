@@ -46,13 +46,14 @@
         <h1 class="login-b">You will be redirected to the linkvertise in 5 seconds.</h1>
         </div>
         <script>
-const urlParams = new URLSearchParams(window.location.search);
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
 const hwid = urlParams.get('hwid');
 const validate = urlParams.get('validate');
-if (hwid = "") {
+if (hwid = '') {
 alert('The link you got might be invalid, Please try again.');
 } else {
-if (validate = "") {
+if (validate = '') {
 alert('The link you got might be invalid, Please try again.');
 } else {
         sessionStorage.setItem('hwid', hwid);
