@@ -53,7 +53,7 @@ const validate = urlParams.get('validate');
 if (hwid == '' || hwid == null) {
     alert('The link you got might be invalid, Please try again.');
 } else {
-    if (validate == '' || hwid == null) {
+    if (validate == '' || validate == null) {
         alert('The link you got might be invalid, Please try again.');
     } else {
             sessionStorage.setItem('hwid', hwid);
