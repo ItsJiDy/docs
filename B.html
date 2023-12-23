@@ -50,10 +50,10 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const hwid = urlParams.get('hwid');
 const validate = urlParams.get('validate');
-if (hwid = '') {
+if (hwid == '') {
 alert('The link you got might be invalid, Please try again.');
 } else {
-if (validate = '') {
+if (validate == '') {
 alert('The link you got might be invalid, Please try again.');
 } else {
         sessionStorage.setItem('hwid', hwid);
