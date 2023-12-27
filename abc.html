@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Save POST Data</title>
+</head>
 <body>
-<script>
-if (document.referrer == '') {
-window.location.href = "https://itsjidy.github.io/docs/abc.html"
-}else{
-alert(document.referrer);
-}
-</script>
+
+<form action="https://itsjidy.github.io/docs/save.php" name="myform" method="post">
+
+<textarea class="textBox" name="mytext"></textarea>
+<input type="submit" class="save" value="save"/>
+
 </body>
 </html>
-
