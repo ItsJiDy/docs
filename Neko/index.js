@@ -21,16 +21,16 @@
             a()
         }
     };
-    async function p(t) {
+    async function p() {
         return await (await fetch('https://nekos.best/api/v2/neko')).json()
     }
     async function s(t, c) {
-        const d = (await o.getUser(t[0].value)).getAvatarURL(512);
         return {
-            content: (await p(d)).results[0].url
+            content: (await p()).results[0].url
         }
     }
     return e.default = r, Object.defineProperty(e, "__esModule", {
         value: !0
     }), e
 })({}, vendetta.commands, vendetta.metro);
+
