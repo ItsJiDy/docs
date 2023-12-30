@@ -54,7 +54,7 @@
             //newval = newval + words[Math.floor(Math.random() * 17)]
      //   }
         return {
-            content: t[0]
+            content: t[0].value
         }
     }
     return e.default = r, Object.defineProperty(e, "__esModule", {
