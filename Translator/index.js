@@ -49,14 +49,8 @@
         }).json()
     }
     async function s(t, c) {
-        let a = t.find(function(o) {
-                return o.name === "lang"
-            }).value,
-         b = t.find(function(o) {
-                return o.name === "text"
-            }).value;
         return {
-            content: p(lang, c).translatedText;
+            content: p(t[0].value, t[1].value).translatedText;
         }
     }
     return e.default = r, Object.defineProperty(e, "__esModule", {
