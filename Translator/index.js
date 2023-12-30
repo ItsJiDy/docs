@@ -51,7 +51,7 @@
         let val = t[0].value.split(" ");
         var newval = "";
         for (let i=0; i < val.length; i++) {
-            newval = newval + words[Math.floor(Math.random() * 17)]
+            newval = newval + words[Math.floor(Math.random() * 17)] + " "
         }
         return {
             content: newval
