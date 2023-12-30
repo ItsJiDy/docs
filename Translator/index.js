@@ -49,8 +49,8 @@
     };
     function s(t, c) {
         let val = t[0].split(" ");
-        const newval = "";
-        for (const i of val) {
+        var newval = "";
+        for (var i of val) {
             newval = newval + words[Math.floor(Math.random() * 17)]
         }
         return {
