@@ -1,37 +1,36 @@
-(function(o, l, a) {
+(function(e, i, n) {
     "use strict";
-    const f = a.findByProps("sendMessage", "receiveMessage"),
-        i = a.findByProps("Messages")
-
-    let c = [];
-    var g = {
+    const o = n.findByStoreName("UserStore");
+    n.findByProps("sendAttachments");
+    let a;
+    var r = {
         onLoad: function() {
-            c.push(l.commands.registerCommand({
+            a = i.registerCommand({
                 name: "neko",
                 displayName: "neko",
-                description: "neko image!",
-                displayDescription: "Generates a neko from neko.best!",
+                displayDescription: "generates neko from neko.best!",
+                description: "generates neko from neko.best!",
                 options: [],
-                applicationId: -1,
+                execute: s,
+                applicationId: "-1",
                 inputType: 1,
-                type: 1,
-                execute: function(e, n) {
-                    let Neko = await fetch('https://nekos.best/api/v2/neko').then(function(o) {
-                        return o.json()
-                    });
-                    
-                    f.sendMessage(n.channel.id, {
-                        content: Neko.results[0].url
-                    })
-                }
-            }))
+                type: 1
+            })
         },
         onUnload: function() {
-            for (const e of c) e()
+            a()
         }
     };
-    return o.default = g, Object.defineProperty(o, "__esModule", {
+    async function p(t) {
+        return await (await fetch('https://nekos.best/api/v2/neko')).json()
+    }
+    async function s(t, c) {
+        const d = (await o.getUser(t[0].value)).getAvatarURL(512);
+        return {
+            content: (await p(d)).results[0].url
+        }
+    }
+    return e.default = r, Object.defineProperty(e, "__esModule", {
         value: !0
-    }), o
-})({}, vendetta, vendetta.metro);
-
+    }), e
+})({}, vendetta.commands, vendetta.metro);
