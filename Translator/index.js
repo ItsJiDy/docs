@@ -15,14 +15,14 @@
                     displayName: "lang",
                     description: "example: en",
                     displayDescription: "language",
-                    required: !1,
+                    required: !0,
                     type: 5
                 }, {
                     name: "text",
                     displayName: "text",
                     description: "example: Hello World",
                     displayDescription: "text",
-                    required: !1,
+                    required: !0,
                     type: 5
                 }],
                 execute: s,
@@ -36,7 +36,7 @@
         }
     };
     async function p(lang, text) {
-        return await fetch("https://libretranslate.com/translate", {
+        return await(await fetch("https://libretranslate.com/translate", {
             	method: "POST",
     	        body: JSON.stringify({
     		    q: text,
@@ -46,11 +46,11 @@
     		     api_key: ""
           	}),
         	headers: { "Content-Type": "application/json" }
-        }).json()
+        })).json()
     }
     async function s(t, c) {
         return {
-            content: p(t[0].value, t[1].value).translatedText;
+            content: (await p(t[0].value, t[1].value).translatedText)
         }
     }
     return e.default = r, Object.defineProperty(e, "__esModule", {
