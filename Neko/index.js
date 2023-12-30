@@ -8,7 +8,7 @@
             a = i.registerCommand({
                 name: "neko",
                 displayName: "neko",
-                displayDescription: "generates neko from neko.best! Author: ItsJiDy",
+                displayDescription: "generates neko from neko.best! Author: Elf and Tears",
                 description: "generates neko from neko.best!",
                 options: [],
                 execute: s,
