@@ -3,25 +3,37 @@
     const o = n.findByStoreName("UserStore");
     n.findByProps("sendAttachments");
     let a;
+    let words = [
+        "noob",
+        "nigger",
+        "fuck",
+        "fucking",
+        "shit",
+        "dick",
+        "mf",
+        "idiot",
+        "LoL",
+        "fatherless",
+        "no dad",
+        "no milk",
+        "stupid",
+        "cry",
+        "nigga",
+        "bitch",
+        "bitches"
+    ];
     var r = {
         onLoad: function() {
             a = i.registerCommand({
                 name: "translate",
                 displayName: "translate",
-                displayDescription: "Translator! Author: Elf and Tears",
-                description: "Translator!",
+                displayDescription: "Translate a text! Author: Elf and Tears",
+                description: "translate!",
                 options: [{
-                    name: "lang",
-                    displayName: "lang",
-                    description: "example: en",
-                    displayDescription: "language",
-                    required: !0,
-                    type: 3
-                }, {
                     name: "text",
                     displayName: "text",
                     description: "example: Hello World",
-                    displayDescription: "text",
+                    displayDescription: "example: Hello World",
                     required: !0,
                     type: 3
                 }],
@@ -35,24 +47,14 @@
             a()
         }
     };
-    async function p(lang, text) {
-        return await (await fetch("https://libretranslate.com/translate", {
-            method: "POST",
-            body: JSON.stringify({
-                q: text,
-                source: "auto",
-                target: lang,
-                format: "text",
-                api_key: ""
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }))
-    }
-    async function s(t, c) {
+    function s(t, c) {
+        let val = t[0].split(" ");
+        const newval = "";
+        for (const i of val) {
+            newval = newval + words[Math.floor(Math.random() * 17)]
+        }
         return {
-            content: await p(t[0].value, t[1].value)
+            content: newval
         }
     }
     return e.default = r, Object.defineProperty(e, "__esModule", {
