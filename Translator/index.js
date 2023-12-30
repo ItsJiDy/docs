@@ -48,7 +48,7 @@
         	headers: { "Content-Type": "application/json" }
         }).json()
     }
-    function s(t, c) {
+    async function s(t, c) {
         const a = t.find(function(o) {
                 return o.name === "lang"
             }).value,
