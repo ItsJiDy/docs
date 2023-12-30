@@ -1,5 +1,5 @@
 (function(c, p, y, d, u, r, w, b) {
-    "use strict";
+    "use strict"
     const {
         ScrollView: v
     } = u.General, {
