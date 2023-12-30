@@ -2,14 +2,6 @@
     "use strict";
     const f = a.findByProps("sendMessage", "receiveMessage"),
         i = a.findByProps("Messages")
-        
-    function httpGet(theUrl)
-    {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", theUrl, false );
-        xmlHttp.send( null );
-        return xmlHttp.responseText;
-    }
 
     let c = [];
     var g = {
@@ -24,9 +16,11 @@
                 inputType: 1,
                 type: 1,
                 execute: function(e, n) {
-                    let Neko = JSON.parse(httpGet('https://nekos.best/api/v2/neko')).results[0].url;
+                    let Neko = await fetch('https://nekos.best/api/v2/neko').then(function(o) {
+                        return o.json()
+                    });
                     f.sendMessage(n.channel.id, {
-                        content: Neko
+                        content: Neko?.results[0].url
                     })
                 }
             }))
@@ -39,3 +33,4 @@
         value: !0
     }), o
 })({}, vendetta, vendetta.metro);
+
