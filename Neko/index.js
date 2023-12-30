@@ -20,7 +20,7 @@
                         return o.json()
                     });
                     f.sendMessage(n.channel.id, {
-                        content: Neko?.results[0].url
+                        content: Neko.results[0].url
                     })
                 }
             }))
