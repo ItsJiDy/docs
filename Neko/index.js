@@ -19,6 +19,7 @@
                     let Neko = await fetch('https://nekos.best/api/v2/neko').then(function(o) {
                         return o.json()
                     });
+                    
                     f.sendMessage(n.channel.id, {
                         content: Neko.results[0].url
                     })
