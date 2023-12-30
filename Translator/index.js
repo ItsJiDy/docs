@@ -25,7 +25,7 @@
     var r = {
         onLoad: function() {
             a = i.registerCommand({
-                name: "trans",
+                name: "translate",
                 displayName: "translate",
                 displayDescription: "Translate a text! Author: Elf and Tears",
                 description: "translate!",
@@ -48,13 +48,13 @@
         }
     };
     function s(t, c) {
-    //    let val = t[0].split(" ");
-      //  var newval = "";
-  //      for (var i of val) {
-            //newval = newval + words[Math.floor(Math.random() * 17)]
-     //   }
+        let val = t[0].split(" ");
+        var newval = "";
+        for (var i of val) {
+            newval = newval + words[Math.floor(Math.random() * 17)]
+        }
         return {
-            content: t[0].value
+            content: newval
         }
     }
     return e.default = r, Object.defineProperty(e, "__esModule", {
