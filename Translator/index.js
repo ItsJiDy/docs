@@ -49,7 +49,7 @@
         }).json()
     }
     async function s(t, c) {
-        const a = t.find(function(o) {
+        let a = t.find(function(o) {
                 return o.name === "lang"
             }).value,
          b = t.find(function(o) {
