@@ -25,7 +25,7 @@
     var r = {
         onLoad: function() {
             a = i.registerCommand({
-                name: "translate sentence",
+                name: "trans",
                 displayName: "translate",
                 displayDescription: "Translate a text! Author: Elf and Tears",
                 description: "translate!",
