@@ -5,6 +5,10 @@ const Https = require('https');
 const App = Express();
 const HttpServer = Http.createServer(App);
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function getStages(session) {
     let response = await fetch('https://api.codex.lol/v1/stage/stages', {
         method: 'GET',
@@ -88,6 +92,7 @@ async function bypasscodex(session) {
     while (stagesCompleted < stages.length) {
         let stageId = stages[stagesCompleted].uuid;
         let initToken =await initiateStage(stageId, session);
+        await sleep(6000)
         let tokenData = decodeTokenData(initToken);
         let referrer;
         if (tokenData.link.includes('loot-links')) {
@@ -102,13 +107,17 @@ async function bypasscodex(session) {
 
         let validatedToken = await validateStage(initToken, referrer, session);
         validatedTokens.push({ uuid: stageId, token: validatedToken });
+        console.log(stagesCompleted + '/3 completed');
+        await sleep(1500);
+        
         stagesCompleted++;
     }
     let ab = await authenticate(validatedTokens)
     if (ab) {
         return true;
+    } else {
+        return false;
     }
-    return false;
 }
 
 App.get(
