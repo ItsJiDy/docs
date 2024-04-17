@@ -1,15 +1,12 @@
-const Express = require('express');
-const Http = require('http');
-const Https = require('https');
 
-const App = Express();
-const HttpServer = Http.createServer(App);
+        alert("task started")
+        let session = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJod2lkIjoiaGFoYWgiLCJpZCI6IjUyZTE5ODZiZjc1YmE0YWMzNDM2MWRjODRjZjk5MTk4OGFlZmM0YWUzZjAwZmY2YzkyZDc3ZDUxYmMxMWQ1NmIiLCJ0eXBlIjoic2Vzc2lvbiIsImlhdCI6MTcxMzM0ODEzOCwiZXhwIjoxNzEzMzUxNzM4fQ.UaP-W5-7F7Bq71ykH9EUWG9KSoAkxzeSedBm9HYM5F_7b7CWiHmAMoRWfmzmv26X7-6jI1bfxyqJWjJS-Eghc1eMxBuYcpKrCOVFOFDUbKI3JykNrn32xqL6YJ-sHWDRs5DY1joZTf5sWseeUTktP98Pce3aT3n8SIScPzlnkNrv6j4zz6RUDQ-HfnTRTl203ctucxE52JkntTZ-rz6rNzPyJIlpI1Q4ezzKk3FzRS8bZl2VKUUVW63ezzzex0GRu0EhgMGEj84V9vomzHhfAdkRqLVEqQsXckTbSv_NWlV9u349Otv3SDpbnZdTD5IGsh7vXTf_DM_1e0dzlWR32g"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function getStages(session) {
+async function getStages() {
     let response = await fetch('https://api.codex.lol/v1/stage/stages', {
         method: 'GET',
         headers: {
@@ -25,7 +22,7 @@ async function getStages(session) {
         return data.stages;
     }
 }
-async function initiateStage(stageId, session) {
+async function initiateStage(stageId) {
     let response = await fetch('https://api.codex.lol/v1/stage/initiate', {
         method: 'POST',
         headers: {
@@ -40,7 +37,7 @@ async function initiateStage(stageId, session) {
         return data.token;
     }
 }
-async function validateStage(token, referrer, session) {
+async function validateStage(token, referrer) {
     let response = await fetch('https://api.codex.lol/v1/stage/validate', {
         method: 'POST',
         headers: {
@@ -57,7 +54,7 @@ async function validateStage(token, referrer, session) {
     }
 }
 
-async function authenticate(validatedTokens, session) {
+async function authenticate(validatedTokens) {
     let response = await fetch('https://api.codex.lol/v1/stage/authenticate', {
         method: 'POST',
         headers: {
@@ -73,7 +70,6 @@ async function authenticate(validatedTokens, session) {
     }
 }
 
-async function bypasscodex(session) {
     function base64decode(str) {
         str = str.replace(/-/g, '+').replace(/_/g, '/');
         return atob(str)
@@ -84,8 +80,7 @@ async function bypasscodex(session) {
         data = base64decode(data);
         return JSON.parse(data);
     }
-    
-    let stages = await getStages(session);
+    let stages = await getStages();
     let stagesCompleted = 0;
 
     let validatedTokens = [];
@@ -105,104 +100,17 @@ async function bypasscodex(session) {
             referrer = 'https://linkvertise.com/';
         }
 
-        let validatedToken = await validateStage(initToken, referrer, session);
+        let validatedToken = await validateStage(initToken, referrer);
         validatedTokens.push({ uuid: stageId, token: validatedToken });
-        console.log(stagesCompleted + '/3 completed');
+        alert((stagesCompleted + 1) + '/3 completed');
         await sleep(1500);
-        
+
         stagesCompleted++;
     }
     let ab = await authenticate(validatedTokens)
     if (ab) {
+        alert("task completed")
         return true;
     } else {
         return false;
     }
-}
-
-App.get(
-    "/script/rendertest",
-    (Request, Response) => {
-        Response.send("I'm Alive!")
-    }
-)
-
-App.get(
-    "/bypass/codex/:hwid",
-    async (Request, Response) => {
-        let a = await bypasscodex(Request.params.hwid)
-        if (a) {
-            Response.send('{"code":"204","success":true}')
-        } else {
-            Response.send('{"code":"204","success":false}')
-        }
-    }
-)
-
-App.post(
-    '/script/getchangelogs',
-    (Request, Response) => {
-        if (Request.headers.authorization == 'elf and tears') {
-            Https.get(
-                'https://raw.githubusercontent.com/ItsJiDy/shwebsocket/main/changelogs.json',
-                (Res) => {
-                    let Data = ''
-                    Res.on(
-                        'data',
-                        (Chunk) => {
-            	            Data += Chunk
-            	        }
-            	    )
-            	    Res.on(
-            	        'end',
-            	        () => {
-            	            Response.send(Data)
-            	        }
-            	    )
-                }
-            )
-        } else {
-            Response.send('{"code":"403","message":"Unauthorized."}');
-        }
-    }
-)
-
-App.post(
-    '/script/checkpass/:userid/:pass',
-    (Request, Response) => {
-        if (Request.headers.authorization == 'elf and tears') {
-            Https.get(
-                'https://inventory.roblox.com/v1/users/' + Request.params.userid + '/items/GamePass/' + Request.params.pass,
-                (Res) => {
-                    let Data = ''
-                    Res.on(
-                        'data',
-                        (Chunk) => {
-            	            Data += Chunk
-            	        }
-            	    )
-            	    Res.on(
-            	        'end',
-            	        () => {
-            	            Data = JSON.parse(Data)
-            	            if (Data.data.length > 0) {
-            	                Response.send('{"code":"201","owned":true}')
-            	            } else {
-            	                Response.send('{"code":"201","owned":false}')
-            	            }
-            	        }
-            	    )
-                }
-            )
-        } else {
-            Response.send('{"code":"403","message":"Unauthorized."}');
-        }
-    }
-)
-
-HttpServer.listen(
-    3000,
-    () => {
-        console.log('Server listening on port 3000');
-    }
-)
