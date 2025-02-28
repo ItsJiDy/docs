@@ -35,7 +35,7 @@
     "SCROLLBAR_THIN_TRACK": ["transparent"],
     "SCROLLBAR_AUTO_THUMB": ["#CAB3DA"],
     "SCROLLBAR_AUTO_TRACK": ["#CAB3DA"],
-    "CHANNELTEXTAREA_BACKGROUND": ["#0000C8"],
+    "CHANNELTEXTAREA_BACKGROUND": ["#000000"],
     "CHANNELS_DEFAULT": ["#90769E"],
     "TEXT_DANGER": ["#FC0E61"],
     "KEYBOARD": ["#0A0A0A"],
@@ -69,7 +69,7 @@
   "spec": 2,
   "background": {
     "blur": 0,
-    "url": "https://raw.githubusercontent.com/kotru21/Vendetta-discord-theme/main/theme_BG/background.jpg",
+    "url": "https://i.pinimg.com/originals/55/01/60/5501609ee45d514d1f2c4a63502045e2.gif",
     "alpha": 0.9,
     "color": "#0A0A0A"
   }
